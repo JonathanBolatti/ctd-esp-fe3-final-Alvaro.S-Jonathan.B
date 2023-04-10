@@ -1,28 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "../Components/Card";
-import { ContextGlobal } from "../Components/utils/global.context";
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import { ButtomContext } from "../Components/utils/DeleteContext"
 
 const Favs = () => {
-  const { state } = useContext(ContextGlobal);
-  const dentists = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  const [favorites, setFavorites] = useState([])
+  const {dispatch} = useContext(ButtomContext);
+
+  const getFavorites = () => {
+    const data = JSON.parse(localStorage.getItem("dentista"))
+    setFavorites(data);
+  } 
+
+  useEffect(()=> {
+      getFavorites();
+      dispatch({type: "eliminar"})
+  }, [])
+
   return (
-    <div className={state.theme}>
+    <>
       <h1>Dentists Favs</h1>
-      <div className='card-grid'>
-        {
-          dentists.map(dentist =>
-            <Card
-              key={dentist.id}
-              name={dentist.name}
-              username={dentist.username}
-              id={dentist.id} />)
-        }
+      <div className="card-grid">
+        {favorites && favorites.map(states => (
+          <div key={states.id}>
+            <Card id={states.id} name={states.name} username={states.username} />
+          </div> ))} 
       </div>
-    </div>
+    </>
   );
 };
-
-
 export default Favs;

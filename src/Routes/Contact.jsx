@@ -1,19 +1,16 @@
-import React, { useContext } from 'react'
-import { ToSubscribe } from '../Components/ToSubscribe'
-import { ContextGlobal } from '../Components/utils/global.context';
+import React from 'react'
+import "../index.css"
+import Form from '../Components/ToSubscribe'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Contact = () => {
-  const { state } = useContext(ContextGlobal);
   return (
-
-    <div className={state.theme}>
+    <div className='divConcat'>
       <h2>Want to know more?</h2>
       <p>Send us your questions and we will contact you</p>
-      <ToSubscribe />
+      <Form/>
     </div>
-   
   )
 }
 

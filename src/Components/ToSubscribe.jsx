@@ -1,107 +1,71 @@
-import React, { useState } from 'react'
-import { Form, Button } from 'semantic-ui-react'
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { PopUp } from './PopUp';
-import { H1, ButtonForm, FormContainer, ButtomContainer } from '../Styles/StyleComponents'
+import React from "react";
+import { useState } from "react";
+import '../index.css';
+import PopUp from "./PopUp";
 
-export const ToSubscribe = () => {
 
-    const [click, setClick] = useState(false);
-    const [isFormValid, setIsFormValid] = useState(false);
+const Form = () => {
+  //Aqui deberan implementar el form completo con sus validaciones
+const [name, setName] = useState("")
+const [email, setEmail] = useState("")
+const [errorName, setErrorName] = useState("")
+const [errorEmail, setErrorEmail] = useState("");
+const [show, setShow] = useState(false)
 
-    const formik = useFormik({
-        initialValues: {
-            name: '',
-            text: '',
-            email: '',
-        },
+const onChangeName = (event) => setName(event.target.value);
+const onChangeEmail = (event) => setEmail(event.target.value);
 
-        validationSchema: Yup.object({
-
-            name: Yup.string()
-                .trim("Blank spaces are not allowed")
-                .strict().min(5, "The minimum is 5 characters")
-                .required("The name is obligatory")
-                .matches(/^[aA-zZ\s]+$/, "Numbers and special characters are not allowed"),
-
-            email: Yup.string()
-                .email("It is not a valid email")
-                .required("Email is required"),
-
-        }),
-
-        onSubmit: (formData) => {
-            console.log(formData);
-            setIsFormValid(true);
-        }
-    })
-
-    const handleClick = () => {
-        setClick(true)
-        setIsFormValid(false);
+const validateName = () => {
+    if(!name.startsWith(" ") && name.length > 5){
+        return true;
     }
-
-    const handleResetCard = () => {
-        setIsFormValid(false);
-        setClick(false)
-    }
-
-    const handleResetCardAndFormFields = () => {
-        formik.handleReset();
-        handleResetCard();
-    }
-
-    return (
-
-        <FormContainer>
-            <Form onSubmit={formik.handleSubmit}>
-                <H1>Contact us</H1>
-
-                <Form.Input
-                    type="text"
-                    placeholder="Enter your full name"
-                    name="name"
-                    onChange={formik.handleChange}
-                    error={formik.errors.name}
-                    value={formik.values.name}
-                />
-
-                <Form.TextArea
-                    type="text"
-                    placeholder="Write here your query"
-                    name="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.text}
-                />
-
-                <Form.Input
-                    type="text"
-                    placeholder="Enter your Email"
-                    name="email"
-                    onChange={formik.handleChange}
-                    error={formik.errors.email}
-                    value={formik.values.email}
-                />
-                <ButtomContainer>
-                    <ButtonForm>
-                        <Button style={{ background: "none", color: "#FFFFFF", border: "none" }} type="submit" onClick={handleClick}>subscribe</Button>
-                    </ButtonForm>
-
-                    <ButtonForm>
-                        <Button style={{ background: "none", color: "#FFFFFF", border: "none" }} type="button" onClick={handleResetCardAndFormFields} >clean fields</Button>
-                    </ButtonForm>
-                </ButtomContainer>
-
-            </Form>
-
-            {click && isFormValid &&
-                <PopUp
-                    name={formik.values.name}
-                    email={formik.values.email}
-                />
-            }
-        </FormContainer>
-
-    )
 }
+
+const validateEmail = () => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return (true)
+    }
+        return (false)
+}
+
+const onHandleSubmit = (e) => {
+        e.preventDefault()
+
+const isValidateName = validateName();
+const isValidateEmail = validateEmail();
+    
+
+    if (!isValidateName) {
+        setErrorName("Please check your name again.")
+    } else {
+        setErrorName("")
+        setShow(false)
+    }
+
+    if (!isValidateEmail) {
+        setErrorEmail("Please check your E-mail again.")
+    } else {
+        setErrorEmail("")
+    setShow(false)
+    }
+
+    if (isValidateName && isValidateEmail){
+    setShow(true)
+    }
+
+}
+return (
+    <div className="superContainer">
+        <form onSubmit={onHandleSubmit}>
+            <input type="text" placeholder="Enter your full name" value={name} onChange={onChangeName}/>
+            {errorName ? <div className="error">{errorName}</div> : null}
+            <input type="email" placeholder=""  value={email} onChange={onChangeEmail}/>
+            {errorEmail ? <div className="error">{errorEmail}</div> : null}
+            <button type="submit" >Suscribe</button>
+        </form>
+            {show ? <PopUp userName={name} /> : null}
+    </div>
+);
+};
+
+export default Form;
