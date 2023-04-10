@@ -59,7 +59,7 @@ return (
         <form onSubmit={onHandleSubmit}>
             <input type="text" placeholder="Enter your full name" value={name} onChange={onChangeName}/>
             {errorName ? <div className="error">{errorName}</div> : null}
-            <input type="email" placeholder=""  value={email} onChange={onChangeEmail}/>
+            <input type="email" placeholder="Enter your E-mail"  value={email} onChange={onChangeEmail}/>
             {errorEmail ? <div className="error">{errorEmail}</div> : null}
             <button type="submit" >Suscribe</button>
         </form>

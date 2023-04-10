@@ -42,8 +42,6 @@ nav{
   background-color: white;
 }
 
-
-
 a{
   color: #0e0e0e;
   text-decoration: none;
@@ -97,6 +95,10 @@ form{
 
 .card:hover{
   border: 0.5px solid rgb(206, 217, 142);
+}
+.card.selected {
+  border: 2px solid #ccc;
+  background-color: #e6e6e6;
 }
 
 .card-grid{
@@ -226,10 +228,15 @@ div.dark {
 }
 
 div.container{
+  background-color: ghostwhite;
   border: 2px solid black;
   border-radius: 20px;
-  margin: 10px;
+  margin: 5px;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
 }
+
 footer > img{
   width: 200px;
   margin: 0;
