@@ -5,7 +5,6 @@ import PopUp from "./PopUp";
 
 
 const Form = () => {
-  //Aqui deberan implementar el form completo con sus validaciones
 const [name, setName] = useState("")
 const [email, setEmail] = useState("")
 const [errorName, setErrorName] = useState("")

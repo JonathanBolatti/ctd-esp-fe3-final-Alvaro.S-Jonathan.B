@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import "../index.css"
 import { ButtomContext } from '../Components/utils/DeleteContext'
+import Navbar from '../Components/Navbar'
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
 
-  const [dentistas, setDentistas] = useState([])
+  const [dentists, setDentistas] = useState([])
   const {dispatch} = useContext(ButtomContext)
 
   const getDentista = async () => {
@@ -25,9 +25,9 @@ const Home = () => {
     <main className="" >
       <h1>Home</h1>
       <div className='card-grid'>
-          {dentistas.map(dentista => (
-            <div key={dentista.id}>
-              <Card id={dentista.id} name={dentista.name} username={dentista.username} />
+          {dentists.map(dentist => (
+            <div key={dentist.id}>
+              <Card id={dentist.id} name={dentist.name} username={dentist.username} />
             </div>
             ))
           }
