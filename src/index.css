@@ -136,7 +136,6 @@ tr:nth-child(even) {
   background-color: #12121296;
   color: white;
   margin-bottom: 0px;
-  height: 100vh;
 }
 
 div.dark {
@@ -228,7 +227,6 @@ div.dark {
 }
 
 div.container{
-  background-color: ghostwhite;
   border: 2px solid black;
   border-radius: 20px;
   margin: 5px;
