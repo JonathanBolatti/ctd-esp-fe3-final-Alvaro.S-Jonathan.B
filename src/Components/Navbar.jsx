@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import {ContextGlobal} from './utils/global.context'
 import  { useContext } from "react";
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -12,8 +11,9 @@ const Navbar = () => {
   const {state, dispatch} = useContext(ContextGlobal)
 
   const handleClick = () => {
-    navigate(-1)
+    navigate('/');
   }
+  
   const changeTheme = () => {
     const valor = state.theme
     dispatch({type: "dark", payload: !valor});
@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <nav>
-    <button onClick={changeTheme} style={{backgroundColor: "black", border: "1px solid", borderRadius: "10px", padding: "10px", color: "white", fontWeight: "bold", fontFamily: "Helvetica, Arial, sans-serif", cursor: "pointer"}}>Change theme🌓</button>
+    <button onClick={changeTheme} style={{backgroundColor: "black", border: "1px solid", borderRadius: "10px", padding: "10px", color: "white", fontWeight: "bold", fontFamily: "Helvetica, Arial, sans-serif", cursor: "pointer"}}>Change theme 🌓</button>
     <ul style={{ listStyleType: "none", margin: 0, marginTop: "10px", padding: 0 }}>
       <Link to={"/home"} style={{ marginRight: "50px", backgroundColor: 'grey', color: "white", padding: "5px 20px", borderRadius: "10px" }}>Home</Link>
       <Link to={"/contact"} style={{ marginRight: "50px", backgroundColor: 'grey', color: "white", padding: "5px 20px", borderRadius: "10px" }}>Contact</Link>

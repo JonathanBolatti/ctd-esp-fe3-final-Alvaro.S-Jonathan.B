@@ -25,14 +25,11 @@ const Card = ({ name, username, id, removeFavorite }) => {
 
   return (
     <div className={`card ${isSelected ? "selected" : ""}`} onClick={handleCardClick}>
-      {/* En cada card deberan mostrar en name - username y el id */}
       <img className="docImagen" src="../images/doctor.jpg" alt="" />
       <h3>
         <Link to={`/dentist/${id}`}>{id}-{name}</Link>
       </h3>
       <h4>{id}</h4>
-      {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
-      {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
       {state ? (
         <button onClick={() => deleteFav(id)} className="favButton">
           Delete
