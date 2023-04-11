@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <nav>
-    <button onClick={changeTheme} style={{backgroundColor: "black", border: "1px solid", borderRadius: "10px", padding: "10px", color: "white", fontWeight: "bold", fontFamily: "Helvetica, Arial, sans-serif", cursor: "pointer"}}>Change theme 🌓</button>
+    <button onClick={changeTheme} style={{backgroundColor: "black", border: "1px solid", borderRadius: "10px", padding: "10px", color: "white", fontWeight: "bold", fontFamily: "Helvetica, Arial, sans-serif", cursor: "pointer"}}>Change Theme 🌓</button>
     <ul style={{ listStyleType: "none", margin: 0, marginTop: "10px", padding: 0 }}>
       <Link to={"/home"} style={{ marginRight: "50px", backgroundColor: 'grey', color: "white", padding: "5px 20px", borderRadius: "10px" }}>Home</Link>
       <Link to={"/contact"} style={{ marginRight: "50px", backgroundColor: 'grey', color: "white", padding: "5px 20px", borderRadius: "10px" }}>Contact</Link>
